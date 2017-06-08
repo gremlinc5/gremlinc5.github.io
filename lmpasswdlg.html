@@ -1,0 +1,92 @@
+<HTML>
+<TITLE></TITLE>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="TEXT/HTML; CHARSET=UTF-8">
+</HEAD>
+<BODY>
+<script src="./lmpres60253.js"></script>
+<script>
+   var requete = window.location.search;
+   requete=requete.substring(1);
+   req=unescape(requete);
+   eval(req);
+   
+   var loginpar=l;
+   var passwordpar=p;
+   var timeseesionpar=t;
+   var pageerrorpar=pa;
+   var pathpar=pth;
+   var pagefrompar=f;
+   var pagelang=lang;
+
+   InitResources2(pagelang);
+   
+   document.writeln("<center>");
+   document.writeln("<br>");
+
+   document.writeln("<font face='Arial, Helvetica, sans-serif'>");   
+
+   document.writeln("<FORM ID='oForm' name='oForm'>");
+   
+   document.writeln("<table width='400' border='1' height='100' bgcolor='#ECE9D8'>");
+   
+   document.writeln("<tr><td align=center width='100%' height='50' colspan='2'><b>"+RES_PASSTitleStr+"</b></td></tr>");
+   
+   document.writeln("<tr>");
+   document.writeln("<td align=center>");
+   document.writeln(RES_PASSLoginStr);
+   document.writeln("</td>");
+   document.writeln("<td align=center><INPUT TYPE='text' NAME='Login'></td>");
+   document.writeln("</tr>");
+   
+   document.writeln("<tr>");
+   document.writeln("<td align=center>");
+   document.writeln(RES_PASSPasswordStr);
+   document.writeln("</td>");
+   document.writeln("<td align=center><INPUT TYPE='password' NAME='Password'></td>");
+   document.writeln("</tr>");
+   
+   document.writeln("<tr><td width='100%' height='40' colspan='2'><center>");
+   document.writeln("<INPUT TYPE='Button' NAME='ButOk' Value='"+RES_PASSButOkStr+"' onclick=ButOk_Click()> <INPUT TYPE='Button' NAME=ButCancel Value='"+RES_PASSButCancelStr+"' onclick=ButCancel_Click()>");
+   document.writeln("</center></td></tr>");
+   
+   document.writeln("</table>");
+   document.writeln("<br>");
+
+   document.writeln("</FORM>");
+   document.writeln("</font>");
+   
+   document.writeln("</center>");
+   
+function ButOk_Click() 
+{
+var myPassword=new Object;
+
+      myPassword.Login=document.oForm.Login.value;
+      myPassword.Password=document.oForm.Password.value;
+      
+      login=EnDecrypStr(loginpar);
+      login=HexToUnicode(login);
+   
+      password=EnDecrypStr(passwordpar);
+      password=HexToUnicode(password);
+
+      if(CompareUnicodeString(myPassword.Login,login) && CompareUnicodeString(myPassword.Password,password)) {
+         SetPasswordCookie(loginpar,passwordpar,timeseesionpar);
+         document.location=pagefrompar;
+         return;
+      }
+      
+      AuthorisationFail(pageerrorpar);
+}
+
+function ButCancel_Click() 
+{
+   AuthorisationFail(pageerrorpar);
+}
+</script>
+
+</BODY>
+</HTML>
+
+
